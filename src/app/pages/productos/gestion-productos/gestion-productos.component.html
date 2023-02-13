@@ -1,6 +1,6 @@
 <section class="container">
   <mat-toolbar>
-    <span>Clientes</span>
+    <span>Productos</span>
   </mat-toolbar>
 
   <mat-card style="margin-top: 10px;">
@@ -19,22 +19,21 @@
           IMG
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <label>Cedula:</label>
+          <label>Precio:</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field style="margin-top: 15px;" class="example-full-width">
-              <mat-label for="txtCedula" style="font-size: 0.7rem;">Ingrese su cedula</mat-label>
-              <input id="txtCedula" name="txtCedula" matInput [(ngModel)]="producto.precio">
+              <mat-label for="txtPrecio" style="font-size: 0.7rem;">Ingrese su precio</mat-label>
+              <input id="txtPrecio" name="txtPrecio" matInput [(ngModel)]="producto.precio">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <label>Dirección:</label>
+          <label>Stock:</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
-          
           <mat-form-field style="margin-top: 15px;" class="example-full-width">
-              <mat-label for="txtDireccion" style="font-size: 0.7rem;">Ingrese su direccion</mat-label>
-              <input id="txtDireccion" name="txtDireccion" matInput [(ngModel)]="producto.stock">
+              <mat-label for="txtStock" style="font-size: 0.7rem;">Ingrese la cantidad de stock</mat-label>
+              <input id="txtStock" name="txtStock" matInput [(ngModel)]="producto.stock">
           </mat-form-field><br>
         </mat-grid-tile>
       </mat-grid-list>
@@ -49,9 +48,9 @@
   </mat-toolbar>
 
   <div class="tabla"> 
-      <label>Buscar Cliente:</label>
+      <label>Buscar Producto:</label>
         <mat-form-field class="example-full-width">
-          <mat-label style="font-size: 0.7rem;">Ingrese el número de cedula</mat-label>
+          <mat-label style="font-size: 0.7rem;">Ingrese el codigo del producto</mat-label>
           <input matInput #message  placeholder="Ex. 0100254581">
         </mat-form-field>
         <button mat-stroked-button>Buscar</button>
@@ -59,31 +58,31 @@
         <div class="mat-elevation-z1">
           <table mat-table [dataSource]="lstProductos" matSort>
         
-            <ng-container matColumnDef="Cedula">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cédula </th>
-              <td mat-cell *matCellDef="let cliente"> {{cliente.cedula}} </td>
+            <ng-container matColumnDef="Codigo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
+              <td mat-cell *matCellDef="let producto"> {{producto.codigo}} </td>
             </ng-container>
             <!-- Progress Column -->
             <ng-container matColumnDef="Nombre">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-              <td mat-cell *matCellDef="let cliente"> {{cliente.nombre}} </td>
+              <td mat-cell *matCellDef="let producto"> {{producto.nombre}} </td>
             </ng-container>
         
             <!-- Name Column -->
-            <ng-container matColumnDef="Direccion">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
-              <td mat-cell *matCellDef="let cliente"> {{cliente.direccion}} </td>
+            <ng-container matColumnDef="Precio">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+              <td mat-cell *matCellDef="let producto"> {{producto.precio}} </td>
             </ng-container>
         
             <!-- Fruit Column -->
-            <ng-container matColumnDef="Año Nacimiento">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Año Nacimiento </th>
-              <td mat-cell *matCellDef="let cliente"> {{cliente.anioNacimiento}} </td>
+            <ng-container matColumnDef="Stock">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
+              <td mat-cell *matCellDef="let producto"> {{producto.stock}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Accion">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Acción </th>
-              <td mat-cell *matCellDef="let cliente">
+              <td mat-cell *matCellDef="let producto">
                 <button  mat-stroked-button color="primary">Editar</button>
               </td>
             </ng-container>

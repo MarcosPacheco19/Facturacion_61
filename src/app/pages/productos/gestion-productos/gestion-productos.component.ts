@@ -12,7 +12,7 @@ export class GestionProductosComponent implements OnInit{
 
   lstProductos = new Array()
 
-  displayedColumns: string[] = ['Cedula', 'Nombre','Direccion', 'Año Nacimiento'];
+  displayedColumns: string[] = ['Codigo', 'Nombre','Precio', 'Stock', 'Accion'];
 
   producto: Producto = new Producto()
 
