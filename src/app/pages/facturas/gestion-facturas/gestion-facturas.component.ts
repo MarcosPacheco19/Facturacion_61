@@ -13,7 +13,7 @@ export class GestionFacturasComponent implements OnInit{
   lstClientes = new Array()
   facturas: any
 
-  columnsToDisplay: string[] = ['numero','cliente','total'];
+  columnsToDisplay: string[] = ['numero','cliente','total', 'acciones'];
 
   constructor(private router: Router, private facturaService: FacturasService){ }
 
