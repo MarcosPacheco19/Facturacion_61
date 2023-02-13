@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacturasService } from 'src/app/services/facturas.service';
-
+import { Factura } from 'src/app/domain/factura';
 @Component({
   selector: 'app-gestion-facturas',
   templateUrl: './gestion-facturas.component.html',
@@ -13,10 +13,9 @@ export class GestionFacturasComponent implements OnInit{
   lstClientes = new Array()
   facturas: any
 
-  columnsToDisplay: string[] = ['Cedula', 'Nombre', 'Año Nacimiento'];
+  columnsToDisplay: string[] = ['numero','cliente','total'];
 
-  constructor(private router: Router,
-    private facturaService: FacturasService){ }
+  constructor(private router: Router, private facturaService: FacturasService){ }
 
 
   ngOnInit(): void {
@@ -24,6 +23,23 @@ export class GestionFacturasComponent implements OnInit{
   }
 
   loadFacturas(){
+    this.facturas = this.facturaService.getAllFacturas()
+
+    this.facturas.subscribe((data: any) => {
+      this.lstClientes = data
+    })
+  }
+
+  editFactura(factura: Factura){
+
+  }
+
+  estadoFactura(factura: Factura){
     
   }
+
+  navCrearFactura(){
+    this.router.navigate(['facturas/crear-facturas'])
+  }
+
 }

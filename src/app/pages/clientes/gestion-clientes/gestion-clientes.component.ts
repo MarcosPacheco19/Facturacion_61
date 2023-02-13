@@ -12,7 +12,7 @@ export class GestionClientesComponent implements OnInit {
 
   lstClientes = new Array()
 
-  displayedColumns: string[] = ['Cedula', 'Nombre','Direccion', 'Año Nacimiento'];
+  displayedColumns: string[] = ['Cedula', 'Nombre','Direccion', 'Año Nacimiento', 'Accion'];
 
   cliente: Cliente = new Cliente()
 
@@ -36,16 +36,13 @@ export class GestionClientesComponent implements OnInit {
   guardar(){
     console.log(this.cliente)
     this.clientesService.save(this.cliente).subscribe(data => console.log(data))
+    this.loadClientes()
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.clientes.filter = filterValue.trim().toLowerCase();
-
-    if (this.clientes.paginator) {
-      this.clientes.paginator.firstPage();
-    }
-  }
-
-
+  tiles: any[] = [
+    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  ];
 }

@@ -5,4 +5,5 @@ export class Factura {
     numero?: string;
     total?: number;
     cliente?: Cliente;
+    estado?: boolean;
 }

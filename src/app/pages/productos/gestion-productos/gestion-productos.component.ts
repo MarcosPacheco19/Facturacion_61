@@ -38,12 +38,4 @@ export class GestionProductosComponent implements OnInit{
     this.productosService.save(this.producto).subscribe(data => console.log(data))
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.productos.filter = filterValue.trim().toLowerCase();
-
-    if (this.productos.paginator) {
-      this.productos.paginator.firstPage();
-    }
-  }
 }

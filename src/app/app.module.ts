@@ -10,18 +10,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GestionFacturasComponent } from './pages/facturas/gestion-facturas/gestion-facturas.component';
 
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { CrearFacturasComponent } from './pages/facturas/crear-facturas/crear-facturas.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     GestionClientesComponent,
     GestionProductosComponent,
-    GestionFacturasComponent
+    GestionFacturasComponent,
+    CrearFacturasComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatGridListModule,
     NgbModule
   ],
   providers: [],

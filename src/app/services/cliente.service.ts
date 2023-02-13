@@ -6,15 +6,15 @@ import { Cliente } from '../domain/cliente';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientesService {
+export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
   save (cliente: Cliente): Observable<any[]> {
-      return this.http.post<any>('http://localhost:8080/ProyectoFinal/rs/clientes', cliente)
+      return this.http.post<any>("http://localhost:8080/demojpa/rs/clientes", cliente)
   }
 
   getAllClientes(): Observable<any[]>{
-    return this.http.get<any>('http://localhost:8080/ProyectoFinal/rs/clientes')
+    return this.http.get<any>('http://localhost:8080/demojpa/rs/clientes')
   }
 }
