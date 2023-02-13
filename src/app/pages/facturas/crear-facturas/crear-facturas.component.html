@@ -1,1 +1,118 @@
-<p>crear-facturas works!</p>
+<section class="container">
+    <mat-toolbar>
+        <span>Nueva Factura</span>
+    </mat-toolbar>
+
+    <mat-card style="margin-top: 10px;">
+        <form>
+          <mat-grid-list cols="9" rowHeight="80px" >
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <label>Nombre:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1" [style.margin-left]="1">
+                <mat-form-field style="margin-top: 15px;" class="example-full-width">
+                  <mat-label for="txtNombre" style="font-size: 0.7rem;">Ingresar nombre</mat-label>
+                  <input id="txtNombre" name="txtNombre" matInput [(ngModel)]="factura.cliente">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <label>Cedula:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+              <mat-form-field style="margin-top: 15px;" class="example-full-width">
+                  <mat-label for="txtCedula" style="font-size: 0.7rem;">Ingresar cédula</mat-label>
+                  <input id="txtCedula" name="txtCedula" matInput [(ngModel)]="factura.cliente">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <label>Dirección:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+              <mat-form-field style="margin-top: 15px;" class="example-full-width">
+                  <mat-label for="txtDireccion" style="font-size: 0.7rem;">Ingresar dirección</mat-label>
+                  <input id="txtDireccion" name="txtDireccion" matInput [(ngModel)]="factura.cliente">
+              </mat-form-field><br>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <label >Año Nacimiento:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+              <mat-form-field style="margin-top: 15px;" class="example-full-width">
+                  <mat-label for="txtAnioNacimiento" style="font-size: 0.7rem;">Ingresar año de nacimiento</mat-label>
+                  <input id="txtAnioNacimiento" name="txtAnioNacimiento" matInput [(ngModel)]="factura.cliente">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <label >Número Factura:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+              <mat-form-field style="margin-top: 15px;" class="example-full-width">
+                  <mat-label for="txtNumFactura" style="font-size: 0.7rem;">Ingresar año de nacimiento</mat-label>
+                  <input id="txtNumFactura" name="txtNumFactura" matInput [(ngModel)]="factura.cliente">
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </form>
+      </mat-card>
+
+      <mat-toolbar style="margin-top: 10px;">
+        <div class="example-spacer"></div>
+        <button mat-stroked-button>Nuevo Producto</button>
+        <button mat-stroked-button>Nuevo Cliente</button>
+        <button mat-stroked-button>Agregar Producto</button>
+        <button (click)="guardar()" mat-stroked-button>Guardar</button>
+    </mat-toolbar>
+
+    <div class="tablaDetalles">
+      <table mat-table [dataSource]="lstFacturas" class="mat-elevation-z1">
+          <ng-container matColumnDef="numero">
+              <th mat-header-cell *matHeaderCellDef>Num Factura </th>
+              <td mat-cell *matCellDef="let p"> {{p.numero}} </td>
+          </ng-container>
+          <ng-container matColumnDef="cliente">
+              <th mat-header-cell *matHeaderCellDef>Cliente </th>
+              <td mat-cell *matCellDef="let p"> {{p.cliente}} </td>
+          </ng-container>
+          <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef>Total </th>
+              <td mat-cell *matCellDef="let p"> {{p.total}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+      </table>
+  </div>
+
+  <form>
+    <mat-grid-list cols="4" rowHeight="80px" >
+      <mat-grid-tile [colspan]="2" [rowspan]="4"></mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <label>Subtotal:</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1" [style.margin-left]="1">
+          <mat-form-field style="margin-top: 15px;" class="example-full-width">
+            <mat-label for="txtNombre" style="font-size: 0.7rem;">Ingresar nombre</mat-label>
+            <input id="txtNombre" name="txtNombre" matInput [(ngModel)]="factura.cliente">
+          </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <label>Iva:</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field style="margin-top: 15px;" class="example-full-width">
+            <mat-label for="txtCedula" style="font-size: 0.7rem;">Ingresar cédula</mat-label>
+            <input id="txtCedula" name="txtCedula" matInput [(ngModel)]="factura.cliente">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <label>Total:</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field style="margin-top: 15px;" class="example-full-width">
+            <mat-label for="txtDireccion" style="font-size: 0.7rem;">Ingresar dirección</mat-label>
+            <input id="txtDireccion" name="txtDireccion" matInput [(ngModel)]="factura.cliente">
+        </mat-form-field><br>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</section>
