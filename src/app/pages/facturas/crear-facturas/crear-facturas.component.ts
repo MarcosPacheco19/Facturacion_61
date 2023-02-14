@@ -31,11 +31,12 @@ export class CrearFacturasComponent {
 
   subtotal: number = 0;
   iva: number = 0;
+  total: number = 0;
 
 
   @ViewChild(MatTable) table: any;
 
-  columnsToDisplay: string[] = ['Accion','Numero','Precio','Cantidad','Total'];
+  columnsToDisplay: string[] = ['Accion','Codigo','Numero','Precio','Cantidad','Total'];
 
   constructor(private router: Router, private facturaService: FacturasService, private clientesService: ClientesService, 
     private productosService: ProductosService){ }
@@ -70,9 +71,16 @@ export class CrearFacturasComponent {
     this.detalle.subtotal = this.producto.precio!*this.detalle.cantidad!
     this.lstDetalles.push(this.detalle)
     this.subtotal= this.subtotal! + this.detalle.subtotal!;
-    this.iva= (this.subtotal * 0.12)+this.subtotal;
+    this.iva= this.subtotal * 0.12
+    this.total= (this.subtotal * 0.12)+this.subtotal;
     this.producto = new Producto()
     this.detalle = new Detalle()
+    console.log(this.lstDetalles)
+    this.table.renderRows()
+  }
+
+  remover(){
+    this.lstDetalles.pop()
     console.log(this.lstDetalles)
     this.table.renderRows()
   }

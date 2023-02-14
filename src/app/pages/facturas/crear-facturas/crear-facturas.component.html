@@ -21,7 +21,7 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1" [style.margin-left]="1">
                 <mat-form-field style="margin-top: 15px;" class="example-full-width">
-                  <mat-label for="txtNombre" style="font-size: 0.7rem;">nombre</mat-label>
+                  <mat-label for="txtNombre" style="font-size: 0.7rem;">Nombre</mat-label>
                   <input disabled id="txtNombre" name="txtNombre" matInput [(ngModel)]="cliente.nombre">
                 </mat-form-field>
             </mat-grid-tile>
@@ -30,7 +30,7 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1">
               <mat-form-field style="margin-top: 15px;" class="example-full-width">
-                  <mat-label for="txtDireccion" style="font-size: 0.7rem;">dirección</mat-label>
+                  <mat-label for="txtDireccion" style="font-size: 0.7rem;">Dirección</mat-label>
                   <input disabled id="txtDireccion" name="txtDireccion" matInput [(ngModel)]="cliente.direccion">
               </mat-form-field><br>
             </mat-grid-tile>
@@ -113,10 +113,14 @@
       <table mat-table [dataSource]="lstDetalles" class="mat-elevation-z1">
         <ng-container matColumnDef="Accion">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Acción </th>
-          <td mat-cell *matCellDef="let p">
-            <button  mat-stroked-button>Remover</button>
+          <td mat-cell *matCellDef="let detalle">
+            <button (click)="remover()"  mat-stroked-button>Remover</button>
           </td>
         </ng-container>
+        <ng-container matColumnDef="Codigo">
+          <th mat-header-cell *matHeaderCellDef>Codigo</th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.producto.codigo}} </td>
+      </ng-container>
           <ng-container matColumnDef="Numero">
               <th mat-header-cell *matHeaderCellDef>Nombre </th>
               <td mat-cell *matCellDef="let detalle"> {{detalle.producto.nombre}} </td>
@@ -147,8 +151,8 @@
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1" [style.margin-left]="1">
           <mat-form-field style="margin-top: 15px;" class="example-full-width">
-            <mat-label for="txtNombre" style="font-size: 0.7rem;">Subtotal</mat-label>
-            <input id="txtNombre" name="txtNombre" matInput [(ngModel)]="subtotal">
+            <mat-label for="txtSubTotal" style="font-size: 0.7rem;">Subtotal</mat-label>
+            <input disabled id="txtSubTotal" name="txtSubTotal" matInput [(ngModel)]="subtotal">
           </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -156,8 +160,8 @@
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-form-field style="margin-top: 15px;" class="example-full-width">
-            <mat-label for="txtCedula" style="font-size: 0.7rem;">Iva 12%</mat-label>
-            <input id="txtCedula" name="txtCedula" matInput [(ngModel)]="factura.cliente">
+            <mat-label for="txtIva" style="font-size: 0.7rem;">Iva 12%</mat-label>
+            <input disabled id="txtIva" name="txtIva" matInput [(ngModel)]="iva">
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -165,8 +169,8 @@
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-form-field style="margin-top: 15px;" class="example-full-width">
-            <mat-label for="txtDireccion" style="font-size: 0.7rem;">Total</mat-label>
-            <input id="txtDireccion" name="txtDireccion" matInput [(ngModel)]="iva">
+            <mat-label for="txtTotal" style="font-size: 0.7rem;">Total</mat-label>
+            <input disabled id="txtTotal" name="txtTotal" matInput [(ngModel)]="total">
         </mat-form-field><br>
       </mat-grid-tile>
     </mat-grid-list>
