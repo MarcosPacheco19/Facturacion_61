@@ -22,29 +22,29 @@
     </mat-card>
 
     <div class="tablaFacturas">
-        <table mat-table [dataSource]="lstClientes" class="mat-elevation-z1">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
             <ng-container matColumnDef="numero">
-                <th mat-header-cell *matHeaderCellDef>Num Factura </th>
-                <td mat-cell *matCellDef="let p"> {{p.numero}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Num Factura </th>
+                <td mat-cell *matCellDef="let factura"> {{factura.numero}} </td>
             </ng-container>
             <ng-container matColumnDef="cliente">
-                <th mat-header-cell *matHeaderCellDef>Cliente </th>
-                <td mat-cell *matCellDef="let p"> {{p.cliente}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente </th>
+                <td mat-cell *matCellDef="let factura"> {{factura.cliente}} </td>
             </ng-container>
             <ng-container matColumnDef="total">
-                <th mat-header-cell *matHeaderCellDef>Total </th>
-                <td mat-cell *matCellDef="let p"> {{p.total}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Total </th>
+                <td mat-cell *matCellDef="let factura"> {{factura.total}} </td>
             </ng-container>
             <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef>Acciones </th>
-                <td mat-cell *matCellDef="let p">
-                    <button mat-raised-button color="primary" (click)="editFactura(p)">Visualizar</button>
-                    <button mat-raised-button color="primary" (click)="estadoFactura(p)">Estado</button>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Acción </th>
+                <td mat-cell *matCellDef="let factura">
+                    <button mat-raised-button color="primary" (click)="editFactura(factura)">Visualizar</button>
+                    <button mat-raised-button color="primary" (click)="estadoFactura(factura)">Estado</button>
                 </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
 </section>

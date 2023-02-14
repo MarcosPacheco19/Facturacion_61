@@ -25,4 +25,8 @@ export class ProductosService {
   update(producto: Producto): Observable<any[]>{
     return this.http.put<any>('http://localhost:8080/ProyectoFinal/rs/productos/actualizarProducto', producto)
   }
+
+  read(producto: Producto){
+    return this.http.get<any>('http://localhost:8080/ProyectoFinal/rs/productos/buscarProducto?codigo='+producto.codigo)
+  }
 }

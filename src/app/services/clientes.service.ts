@@ -25,4 +25,8 @@ export class ClientesService {
   update(cliente: Cliente): Observable<any[]>{
     return this.http.put<any>('http://localhost:8080/ProyectoFinal/rs/clientes/actualizarCliente',cliente)
   }
+
+  read(cliente: Cliente): Observable<any[]> {
+    return this.http.get<any>('http://localhost:8080/ProyectoFinal/rs/clientes/buscarCliente?cedula='+cliente.cedula)
+  }
 }

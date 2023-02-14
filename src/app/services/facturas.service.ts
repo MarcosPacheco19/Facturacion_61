@@ -11,4 +11,8 @@ export class FacturasService {
   getAllFacturas(): Observable<any[]>{
     return this.http.get<any>('http://localhost:8080/ProyectoFinal/rs/facturas/all')
   }
+
+  getNumFactura(): Observable<any[]>{
+    return this.http.get<any>('http://localhost:8080/ProyectoFinal/rs/facturas/numFactura')
+  }
 }
