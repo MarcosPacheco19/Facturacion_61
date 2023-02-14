@@ -1,6 +1,6 @@
 export class Producto {
-   codigo?: number;
-   precio?: number;
-   stock?: number;
+   codigo?: string;
+   precio?: number|null;
+   stock?: number|null;
    nombre?: string;
 }

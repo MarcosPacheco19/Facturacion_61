@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Cliente } from 'src/app/domain/cliente';
 import { ClientesService } from 'src/app/services/clientes.service';
@@ -9,9 +10,11 @@ import { ClientesService } from 'src/app/services/clientes.service';
   styleUrls: ['./gestion-clientes.component.css']
 })
 export class GestionClientesComponent implements OnInit {
-
+  
   lstClientes = new Array()
 
+  dataSource = new MatTableDataSource(this.lstClientes);
+  
   displayedColumns: string[] = ['Cedula', 'Nombre','Direccion', 'Año Nacimiento', 'Accion'];
 
   cliente: Cliente = new Cliente()
@@ -29,20 +32,47 @@ export class GestionClientesComponent implements OnInit {
     console.log(this.cliente)
     this.clientes.subscribe((data: any) => {
       console.log("data", data)
-      this.lstClientes = data
+      this.dataSource = data
     })
   }
 
   guardar(){
     console.log(this.cliente)
-    this.clientesService.save(this.cliente).subscribe(data => console.log(data))
-    this.loadClientes()
+    this.clientesService.save(this.cliente).subscribe(data =>{
+      console.log(data)
+      this.loadClientes()
+      this.limpiar()
+    })
   }
 
-  tiles: any[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
+  eliminar(cliente: Cliente){
+    console.log(cliente)
+    this.clientesService.delete(cliente).subscribe(data =>{
+      console.log(data)
+      this.loadClientes()
+    } )
+  }
+
+  actualizar(){
+    this.clientesService.update(this.cliente).subscribe(data =>{
+      console.log(data)
+      this.loadClientes()
+      this.limpiar()
+    })
+  }
+
+  completar(cliente: Cliente){
+    this.cliente.anioNacimiento=cliente.anioNacimiento;
+    this.cliente.cedula=cliente.cedula;
+    this.cliente.direccion=cliente.direccion;
+    this.cliente.nombre=cliente.nombre;
+  }
+  
+
+  limpiar(){
+    this.cliente.anioNacimiento=null;
+    this.cliente.cedula='';
+    this.cliente.direccion='';
+    this.cliente.nombre='';
+  }
 }

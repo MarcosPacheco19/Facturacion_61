@@ -7,6 +7,18 @@
     <form>
       <mat-grid-list cols="4" rowHeight="80px" >
         <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <label>Codigo:</label>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1" [style.margin-left]="1">
+            <mat-form-field style="margin-top: 15px;" class="example-full-width">
+              <mat-label for="txtCodigo" style="font-size: 0.7rem;">Ingresar codigo del producto</mat-label>
+              <input id="txtCodigo" name="txtCodigo" matInput [(ngModel)]="producto.codigo">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="4">
+          IMG
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
           <label>Nombre:</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1" [style.margin-left]="1">
@@ -15,9 +27,7 @@
               <input id="txtNombre" name="txtNombre" matInput [(ngModel)]="producto.nombre">
             </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="3">
-          IMG
-        </mat-grid-tile>
+        
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <label>Precio:</label>
         </mat-grid-tile>
@@ -43,21 +53,13 @@
   <mat-toolbar style="margin-top: 10px;">
       <div class="example-spacer"></div>
       <button (click)="guardar()" mat-stroked-button>Agregar</button>
-      <button mat-stroked-button>Eliminar</button>
-      <button mat-stroked-button>Actualizar</button>
+      <button (click)="actualizar()" mat-stroked-button>Actualizar</button>
   </mat-toolbar>
 
   <div class="tabla"> 
-      <label>Buscar Producto:</label>
-        <mat-form-field class="example-full-width">
-          <mat-label style="font-size: 0.7rem;">Ingrese el codigo del producto</mat-label>
-          <input matInput #message  placeholder="Ex. 0100254581">
-        </mat-form-field>
-        <button mat-stroked-button>Buscar</button>
 
         <div class="mat-elevation-z1">
-          <table mat-table [dataSource]="lstProductos" matSort>
-        
+          <table mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="Codigo">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
               <td mat-cell *matCellDef="let producto"> {{producto.codigo}} </td>
@@ -83,7 +85,8 @@
             <ng-container matColumnDef="Accion">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Acción </th>
               <td mat-cell *matCellDef="let producto">
-                <button  mat-stroked-button color="primary">Editar</button>
+                <button (click)="completar(producto)" mat-stroked-button color="primary">Editar</button>
+                <button (click)="eliminar(producto)" mat-stroked-button color="primary">Eliminar</button>
               </td>
             </ng-container>
         

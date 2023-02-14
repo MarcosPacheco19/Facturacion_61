@@ -17,4 +17,12 @@ export class ClientesService {
   getAllClientes(): Observable<any[]>{
     return this.http.get<any>('http://localhost:8080/ProyectoFinal/rs/clientes')
   }
+
+  delete(cliente: Cliente): Observable<any[]>{
+    return this.http.delete<any>('http://localhost:8080/ProyectoFinal/rs/clientes/eliminarCliente?cedula='+cliente.cedula)
+  }
+
+  update(cliente: Cliente): Observable<any[]>{
+    return this.http.put<any>('http://localhost:8080/ProyectoFinal/rs/clientes/actualizarCliente',cliente)
+  }
 }

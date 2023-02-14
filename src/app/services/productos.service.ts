@@ -11,10 +11,18 @@ export class ProductosService {
   constructor(private http: HttpClient) { }
 
   save (producto: Producto): Observable<any[]> {
-      return this.http.post<any>('', producto)
+      return this.http.post<any>('http://localhost:8080/ProyectoFinal/rs/productos', producto)
   }
 
   getAllProductos(): Observable<any[]>{
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8080/ProyectoFinal/rs/productos')
+  }
+
+  delete(producto: Producto): Observable<any[]>{
+    return this.http.delete<any>('http://localhost:8080/ProyectoFinal/rs/productos/eliminarProducto?codigo='+producto.codigo)
+  }
+
+  update(producto: Producto): Observable<any[]>{
+    return this.http.put<any>('http://localhost:8080/ProyectoFinal/rs/productos/actualizarProducto', producto)
   }
 }
